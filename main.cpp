@@ -30,7 +30,8 @@ void FuntionTemplateInRecursively(F first, Args&& ...args) {
 template <typename F, typename ...Args>
 void FuntionTemplateNotRecursively(const F& f, Args&& ...args) {
 
-    std::vector<int> test {(f(std::forward<Args>(args)), 0)...};
+    // std::vector<int> test {(f(std::forward<Args>(args)), 0)...};
+    (f(std::forward<Args>(args)), ...);
 }
 //------------------------ Funtion template expand ----------------------------
 
@@ -83,8 +84,8 @@ int main() {
     FuntionTemplateNotRecursively([](auto i){std::cout << i << std::endl;}, 1, 2.2, "test"); // c++14
 
     // Class template expand
-    // ExpandTemplateByInheritance<int, char, float> inheritance;
-    ExpandTemplateByRecursively<int, char, float> recursively;
-    std::cout << Multiply<2, 3, 4, 5>::val << std::endl; // 120
+    ExpandTemplateByInheritance<int, char, float> inheritance;
+    // ExpandTemplateByRecursively<int, char, float> recursively;
+    // std::cout << Multiply<2, 3, 4, 5>::val << std::endl; // 120
 	return 0;
 }

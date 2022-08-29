@@ -1,1 +1,1 @@
-Variable args expand
+Variable Args Template
